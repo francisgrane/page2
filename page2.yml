@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: page1-deployment
+  name: page2-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: page1-app
+      app: page2-app
   template:
     metadata:
       labels:
-        app: page1-app
+        app: page2-app
     spec:
       containers:
-      - name: page1-container
-        image: francisgrane/page1:latest
+      - name: page2-container
+        image: francisgrane/page2:latest
         ports:
         - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: page1-service
+  name: page2-service
 spec:
   selector:
-    app: page1-app
+    app: page2-app
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
-      nodePort: 30000   # Define the NodePort here
+      nodePort: 30001   # Define the NodePort here
   type: NodePort        # Change the type to NodePort
